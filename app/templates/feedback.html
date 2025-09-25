@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Here Are The Results!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+    <style>
+        body {
+            background: url("{{ url_for('static', filename='images/background.png') }}") no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        .dial {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: conic-gradient(#ccc 0%, #ccc 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 24px;
+            color: white;
+            position: relative;
+            margin: auto;
+        }
+        .dial::before {
+            content: '';
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #fff;
+            position: absolute;
+        }
+        .dial span {
+            position: absolute;
+            z-index: 2;
+            color: #212529;
+        }
+        ul {
+            margin-bottom: 0;
+        }
+        canvas.confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 class="text-center mb-3 text-white">Here Are The Results!</h2>
+
+
+    <div class="text-center mb-4">
+        {% if badge_color == "green" %}
+            <img src="{{ url_for('static', filename='images/logo-green.png') }}" alt="Green Score" class="img-fluid" style="max-height: 100px;">
+        {% elif badge_color == "orange" %}
+            <img src="{{ url_for('static', filename='images/logo-yellow.png') }}" alt="Yellow Score" class="img-fluid" style="max-height: 100px;">
+        {% elif badge_color == "red" %}
+            <img src="{{ url_for('static', filename='images/logo-red.png') }}" alt="Red Score" class="img-fluid" style="max-height: 100px;">
+        {% else %}
+            <img src="{{ url_for('static', filename='images/logo-main.png') }}" alt="Default Logo" class="img-fluid" style="max-height: 100px;">
+        {% endif %}
+    </div>
+
+
+    <div class="row justify-content-center mb-4">
+        <div class="col-6 col-sm-4 col-md-3">
+            <div class="dial {{ badge_color }}" id="scoreDial">
+                <span id="scoreValue">0</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card p-3 p-sm-4 shadow-sm" style="background-color: rgba(255, 255, 255, 0.9);">
+        {% if strengths or weaknesses or suggestions %}
+            {% if strengths and strengths != "N/A" %}
+                <div class="mb-3 p-3 border-start border-success border-4 rounded" style="background-color: rgba(255, 255, 255, 0.9);">
+                    <h5 class="text-success fs-5">✅ Strengths</h5>
+                    <ul class="fs-6">
+                        {% for item in strengths.splitlines() if item.strip() %}
+                            <li>{{ item.lstrip("-• ") }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if weaknesses and weaknesses != "N/A" %}
+                <div class="mb-3 p-3 border-start border-danger border-4 rounded" style="background-color: rgba(255, 255, 255, 0.9);">
+                    <h5 class="text-danger fs-5">❌ Missing Experience</h5>
+                    <ul class="fs-6">
+                        {% for item in weaknesses.splitlines() if item.strip() %}
+                            <li>{{ item.lstrip("-• ") }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if suggestions and suggestions != "N/A" %}
+                <div class="mb-3 p-3 border-start border-primary border-4 rounded" style="background-color: rgba(255, 255, 255, 0.9);">
+                    <h5 class="text-primary fs-5">💡 Suggested Bullet Points</h5>
+                    <ul class="fs-6">
+                        {% for item in suggestions.splitlines() if item.strip() %}
+                            <li>{{ item.lstrip("-• ") }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% else %}
+            <p class="text-muted text-center">No feedback available yet. Please run an analysis.</p>
+        {% endif %}
+    </div>
+
+
+    <div class="text-center mt-4">
+        <a href="{{ url_for('main.index') }}" class="btn btn-link">← Try Another Resume</a>
+    </div>
+
+
+    <footer class="text-center mt-5 text-white" style="font-size: 0.9rem;">
+        © 2025 JobLens · Your AI Resume Optimizer
+    </footer>
+</div>
+
+
+<script>
+    const score = {{ match_score }};
+    const dial = document.getElementById('scoreDial');
+    const value = document.getElementById('scoreValue');
+    const badgeColor = "{{ badge_color }}";
+
+    let progress = 0;
+    const speed = 20;
+
+    const interval = setInterval(() => {
+        if (progress >= score) {
+            clearInterval(interval);
+            if (score >= 80) {
+                startConfetti();
+            }
+        } else {
+            progress++;
+            value.textContent = progress;
+            let angle = (progress / 100) * 360;
+
+            let color;
+            if (badgeColor === "green") color = "#28a745";
+            else if (badgeColor === "orange") color = "#fd7e14";
+            else color = "#dc3545";
+
+            dial.style.background = `conic-gradient(${color} 0% ${angle}deg, #ccc ${angle}deg 360deg)`;
+        }
+    }, speed);
+
+    function startConfetti() {
+        const canvas = document.createElement("canvas");
+        canvas.classList.add("confetti");
+        document.body.appendChild(canvas);
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const confettiCount = 150;
+        const confetti = [];
+
+        for (let i = 0; i < confettiCount; i++) {
+            confetti.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height - canvas.height,
+                r: Math.random() * 6 + 4,
+                d: Math.random() * confettiCount,
+                color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+                tilt: Math.floor(Math.random() * 10) - 10,
+                tiltAngleIncremental: (Math.random() * 0.07) + 0.05,
+                tiltAngle: 0
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            confetti.forEach((c) => {
+                ctx.beginPath();
+                ctx.lineWidth = c.r / 2;
+                ctx.strokeStyle = c.color;
+                ctx.moveTo(c.x + c.tilt + c.r / 4, c.y);
+                ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 4);
+                ctx.stroke();
+            });
+            update();
+        }
+
+        function update() {
+            confetti.forEach((c, i) => {
+                c.tiltAngle += c.tiltAngleIncremental;
+                c.y += (Math.cos(c.d) + 3 + c.r / 2) / 2;
+                c.x += Math.sin(c.d);
+                c.tilt = Math.sin(c.tiltAngle - i / 3) * 15;
+
+                if (c.y > canvas.height) {
+                    confetti[i] = {
+                        x: Math.random() * canvas.width,
+                        y: -10,
+                        r: c.r,
+                        d: c.d,
+                        color: c.color,
+                        tilt: c.tilt,
+                        tiltAngleIncremental: c.tiltAngleIncremental,
+                        tiltAngle: c.tiltAngle
+                    };
+                }
+            });
+        }
+
+        (function animate() {
+            draw();
+            requestAnimationFrame(animate);
+        })();
+
+        setTimeout(() => {
+            document.body.removeChild(canvas);
+        }, 5000);
+    }
+</script>
+</body>
+</html>
