@@ -6,7 +6,7 @@ Built with **Flask**, **OpenAI GPT models**, and deployed on **Render** with a c
 ---
 
 ## 📖 Overview
-Looking for jobs is stressful — tailoring your resume for each application makes it even harder.  
+Looking for jobs is stressful - tailoring your resume for each application makes it even harder.  
 **JobLens** takes the pain out of the process by analyzing your resume against a job description and providing:
 
 - ✅ A match score  
