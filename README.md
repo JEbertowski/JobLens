@@ -86,20 +86,18 @@ JobLens demonstrates my ability to:
 - python run.py
 
 ---
-🌐 Deployment
+## 🌐 Deployment
 
 - JobLens is deployed via Render with a custom domain:
 - Live App → https://joblens.org
 - Deployment → Automated via GitHub Actions CI/CD
 
 ---
-
-📄 License
-This project is licensed under the MIT License.
-
----
-🤝 Acknowledgments
+## 🤝 Acknowledgments
 - OpenAI GPT API for powering the resume/job description analysis.
 - Bootstrap + React for clean, responsive UI components.
 - Render for full-stack hosting with SSL.
+---
+## 📄 License
+This project is licensed under the MIT License.
 
