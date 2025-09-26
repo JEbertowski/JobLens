@@ -44,21 +44,21 @@ Built to reduce the stress of job hunting, JobLens combines **LLM-powered analys
 ## 📸 Screenshots
 
 ### 🖥️ Desktop – Main Upload Screen
-![JobLens Main Screen]<img width="1919" height="937" alt="Desktop Main" src="https://github.com/user-attachments/assets/07ffa8ff-b114-49ce-ae80-f3e0e609e664" />
+<img width="640" height="360" alt="Desktop Main" src="https://github.com/user-attachments/assets/07ffa8ff-b114-49ce-ae80-f3e0e609e664" />
   
 *Upload your resume and paste a job description to begin analysis.*
 
 ---
 
 ### 🖥️ Desktop – Results Screen
-![JobLens Results Screen]<img width="1900" height="939" alt="Desktop Results" src="https://github.com/user-attachments/assets/c7816b50-e526-4bf2-92f9-cb8342b56215" />
+<img width="640" height="360" alt="Desktop Results" src="https://github.com/user-attachments/assets/c7816b50-e526-4bf2-92f9-cb8342b56215" />
 
 *Displays strengths, missing experience, and suggested bullet points with a match score dial and confetti animation.*
 
 ---
 
 ### 📱 Mobile – Responsive Layout
-![JobLens Mobile Version] <img width="1179" height="1995" alt="Mobile version" src="https://github.com/user-attachments/assets/e3d60728-5392-4184-97c5-8aacef85d285" />
+<img width="1179" height="1995" alt="Mobile version" src="https://github.com/user-attachments/assets/e3d60728-5392-4184-97c5-8aacef85d285" />
 
 *Fully responsive mobile-friendly layout for job seekers on the go.*
  
