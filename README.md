@@ -69,9 +69,9 @@ JobLens demonstrates my ability to:
 ---
 🌐 Deployment
 
-JobLens is deployed via Render with a custom domain:
-Live App → https://joblens.org
-Deployment → Automated via GitHub Actions CI/CD
+- JobLens is deployed via Render with a custom domain:
+- Live App → https://joblens.org
+- Deployment → Automated via GitHub Actions CI/CD
 
 ---
 
