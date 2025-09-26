@@ -56,7 +56,6 @@ JobLens demonstrates my ability to:
 ---
 
 ## 🧑‍💻 Local Development 
-   ```bash
 git clone https://github.com/JEbertowski/JobLens.git
 cd JobLens
 python -m venv venv
@@ -66,3 +65,22 @@ pip install -r requirements.txt
 OPENAI_API_KEY=your_api_key_here
 FLASK_ENV=development
 python run.py
+
+---
+🌐 Deployment
+
+JobLens is deployed via Render with a custom domain:
+Live App → https://joblens.org
+Deployment → Automated via GitHub Actions CI/CD
+
+---
+
+📄 License
+This project is licensed under the MIT License.
+
+---
+🤝 Acknowledgments
+OpenAI GPT API for powering the resume/job description analysis.
+Bootstrap + React for clean, responsive UI components.
+Render for full-stack hosting with SSL.
+
