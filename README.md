@@ -42,7 +42,23 @@ Built to reduce the stress of job hunting, JobLens combines **LLM-powered analys
 ---
 
 ## 📸 Screenshots
-*(Insert screenshots of the scoring dial, mascot popup, and resume/job preview here)*  
+
+### 🖥️ Desktop – Main Upload Screen
+![JobLens Main Screen](./Desktop%20Main.png)  
+*Upload your resume and paste a job description to begin analysis.*
+
+---
+
+### 🖥️ Desktop – Results Screen
+![JobLens Results Screen](./Desktop%20Results.png)  
+*Displays strengths, missing experience, and suggested bullet points with a match score dial and confetti animation.*
+
+---
+
+### 📱 Mobile – Responsive Layout
+![JobLens Mobile Version](./Mobile%20version.png)  
+*Fully responsive mobile-friendly layout for job seekers on the go.*
+ 
 
 ---
 
