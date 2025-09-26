@@ -1,4 +1,4 @@
-# JobLens – AI Resume Optimizer
+🔎# JobLens – AI Resume Optimizer
 
 **Live Demo:** [https://joblens.org](https://joblens.org)  
 **GitHub Repo:** https://github.com/JEbertowski/JobLens  
