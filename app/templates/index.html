@@ -5,7 +5,6 @@
     <title>JobLens - AI Resume Optimizer</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600&display=swap" rel="stylesheet">
@@ -30,14 +29,45 @@
             width: 3rem;
             height: 3rem;
         }
+
+        /* 🔵 Pulse + Glow effect for loader image */
+        #loader img {
+            animation: pulseGlow 1.5s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%   { transform: scale(1); filter: drop-shadow(0 0 2px #4dabf7); opacity: 1; }
+            50%  { transform: scale(1.15); filter: drop-shadow(0 0 12px #4dabf7); opacity: 0.7; }
+            100% { transform: scale(1); filter: drop-shadow(0 0 2px #4dabf7); opacity: 1; }
+        }
+
+        /* 🦉 Apply Icon Styling */
+        .apply-icon-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .apply-icon-btn:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
 
 <div class="container mt-5">
-    <div class="card shadow-sm" style="background-color: rgba(255, 255, 255, 0.9);">
+    <div class="card shadow-sm position-relative" style="background-color: rgba(255, 255, 255, 0.9);">
         <div class="card-body">
 
+            <!-- Owl Icon in Top Right Corner -->
+            <img src="{{ url_for('static', filename='images/logo-apply.png') }}"
+                 alt="When Should You Apply"
+                 class="apply-icon-btn"
+                 title="When Should You Apply?"
+                 data-bs-toggle="modal"
+                 data-bs-target="#applyModal">
 
             <div class="text-center mb-3">
                 <img src="{{ url_for('static', filename='images/logo-main.png') }}"
@@ -70,12 +100,29 @@
         </div>
     </div>
 
-
     <footer class="text-center mt-5 text-muted" style="font-size: 0.9rem;">
         © 2025 JobLens · Your AI Resume Optimizer
     </footer>
 </div>
 
+<!-- Modal for "When Should You Apply?" -->
+<div class="modal fade" id="applyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">When Should You Apply?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="{{ url_for('static', filename='images/Chalkboard.png') }}"
+                     alt="When Should You Apply Rubric"
+                     class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     function showLoader() {
         document.getElementById("loader").style.display = "block";
