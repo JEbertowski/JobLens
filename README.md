@@ -58,7 +58,7 @@ Built to reduce the stress of job hunting, JobLens combines **LLM-powered analys
 ---
 
 ### 📱 Mobile – Responsive Layout
-<img width="1179" height="1995" alt="Mobile version" src="https://github.com/user-attachments/assets/e3d60728-5392-4184-97c5-8aacef85d285" />
+<img width="378" height="640" alt="Mobile version" src="https://github.com/user-attachments/assets/e3d60728-5392-4184-97c5-8aacef85d285" />
 
 *Fully responsive mobile-friendly layout for job seekers on the go.*
  
